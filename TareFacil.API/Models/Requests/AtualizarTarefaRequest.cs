@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.DataAnnotations;
+using TareFacil.Domain.Enums;
+
+namespace TareFacil.API.Models.Requests {
+    public class AtualizarTarefaRequest {
+
+        [MaxLength(100, ErrorMessage = "O título da tarefa deve ter no máximo 100 caracteres.")]
+        [Required(ErrorMessage = "Por favor, informe um título para a tarefa.")]
+        public string? Titulo { get; set; }
+
+        [Required(ErrorMessage = "Por favor, informe uma descrição para a tarefa.")]
+        public string? Descricao { get; set; }
+        public DateTime? DataConclusao { get; set; }
+
+        public StatusTarefa? Status { get; set; }
+
+
+    }
+}

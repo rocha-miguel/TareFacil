@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TareFacil.API/TareFacil.API.csproj" />
+  <Project Path="TareFacil.Domain/TareFacil.Domain.csproj" />
+  <Project Path="TareFacil.Infra.Data/TareFacil.Infra.Data.csproj" />
+</Solution>
