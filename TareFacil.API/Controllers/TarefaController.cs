@@ -1,40 +1,96 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using TareFacil.API.Models.Requests;
+using TareFacil.Application.Services;
 
 namespace TareFacil.API.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class TarefaController : ControllerBase {
 
-        [HttpPost]
-        public IActionResult Criar([FromBody] CriarTarefaRequest request) {
+        private readonly TarefaService _tarefaService;
 
-            return Ok();
+        public TarefaController(TarefaService tarefaService) {
+
+            _tarefaService = tarefaService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Criar([FromBody] CriarTarefaRequest request) {
+
+            try {
+
+                var response = await _tarefaService.CriarAsync(request);
+
+                return StatusCode(201, response);
+
+            } catch (ApplicationException e) {
+
+                return BadRequest(new { mensagem = e.Message });
+            }
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(Guid id, [FromBody] AtualizarTarefaRequest request) {
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] AtualizarTarefaRequest request) {
 
-            return Ok();
+            try {
+
+                var response = await _tarefaService.AtualizarAsync(id, request);
+
+                return Ok(response);
+
+            } catch (ApplicationException e) {
+
+                return BadRequest(new { mensagem = e.Message });
+            }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(Guid id) {
+        public async Task<IActionResult> Deletar(Guid id) {
 
-            return Ok();
+            try {
+
+                await _tarefaService.DeletarAsync(id);
+
+                return NoContent();
+
+            } catch (ApplicationException e) {
+
+                return NotFound(new { mensagem = e.Message });
+
+            }
         }
 
         [HttpGet]
-        public IActionResult Listar() {
+        public async Task<IActionResult> Listar() {
 
-            return Ok();
+            try {
+
+                var tarefas = await _tarefaService.ListarAsync();
+
+                return Ok(tarefas);
+
+            } catch (ApplicationException e) {
+
+                return BadRequest(new { mensagem = e.Message });
+
+            }
         }
 
         [HttpGet("{id}")]
-        public IActionResult ListarPorId(Guid id) {
+        public async Task<IActionResult> ListarPorId(Guid id) {
 
-            return Ok();
+            try {
+
+                var tarefa = await _tarefaService.ListarPorIdAsync(id);
+
+                return Ok(tarefa);
+
+            } catch (ApplicationException e) {
+
+                return NotFound(new { mensagem = e.Message });
+
+            }
         }
     }
 

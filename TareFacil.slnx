@@ -1,5 +1,17 @@
 <Solution>
-  <Project Path="TareFacil.API/TareFacil.API.csproj" />
-  <Project Path="TareFacil.Domain/TareFacil.Domain.csproj" />
-  <Project Path="TareFacil.Infra.Data/TareFacil.Infra.Data.csproj" />
+  <Folder Name="/1 - API/">
+    <Project Path="TareFacil.API/TareFacil.API.csproj" />
+  </Folder>
+  <Folder Name="/2 - DOMAIN/">
+    <Project Path="TareFacil.Domain/TareFacil.Domain.csproj" />
+  </Folder>
+  <Folder Name="/3 - INFRASTRUCTURE/">
+    <Project Path="TareFacil.Infra.Data/TareFacil.Infra.Data.csproj" />
+  </Folder>
+  <Folder Name="/4 - APPLICATION/">
+    <Project Path="TareFacil.Application/TareFacil.Application.csproj" Id="b4c55ddd-cccd-40cf-98de-b59e739b8ea1" />
+  </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
 </Solution>

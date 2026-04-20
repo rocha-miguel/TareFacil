@@ -12,7 +12,7 @@ namespace TareFacil.API.Models.Requests {
         public string? Descricao { get; set; }
         public DateTime? DataConclusao { get; set; }
 
-        public StatusTarefa? Status { get; set; }
+        public StatusTarefa Status { get; set; }
 
 
     }
